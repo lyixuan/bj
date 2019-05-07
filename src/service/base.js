@@ -1,12 +1,13 @@
 import api from './http';
 const qs = require('qs');
+const headers = { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' };
 
 export default {
   getShopList(params) {
     // 商品搜索
     return api.post('https://route.showapi.com/1615-1', params,
       {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+        headers: headers,
         transformRequest: [function (data) {
           return qs.stringify(data);
         }]
@@ -21,7 +22,7 @@ export default {
     // 商品历史价格
     return api.post('http://route.showapi.com/1615-2', params,
       {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+        headers: headers,
         transformRequest: [function (data) {
           return qs.stringify(data);
         }]
