@@ -16,6 +16,30 @@ const lists = [{
   shopPrice: "￥69.00",
   shopTitle: "汉格斯特(Hengst)空调滤E2948LC(奥迪A4/A4L/A5/Q5/保时捷Macan)",
   shopType: "京东商城 (自营)"
+},{
+  shopAddr: "http://item.jd.com/237062173861.html",
+  shopImg: "http://img11.360buyimg.com/n7/jfs/t1/29984/19/8741/418224/5c78fe8bE5d6379a0/dc36b16d7e455a56.jpg",
+  shopPrice: "￥53.00",
+  shopTitle: "马勒 MAHLE空调滤清器 空调格 空调滤芯 保时捷macan",
+  shopType: "京东商城(汇栗车品专营店) (第三方 )"
+},{
+  shopAddr: "http://item.jd.com/10237102.html",
+  shopImg: "http://img10.360buyimg.com/n7/jfs/t2617/363/1224315686/297221/b05f5d50/57384a56N959a8b34.jpg",
+  shopPrice: "￥64.00",
+  shopTitle: "汉格斯特(Hengst)空调滤E2948LC(奥迪A4/A4L/A5/Q5/保时捷Macan)",
+  shopType: "京东商城 (自营)"
+},{
+  shopAddr: "http://item.jd.com/237062173863.html",
+  shopImg: "http://img11.360buyimg.com/n7/jfs/t1/29984/19/8741/418224/5c78fe8bE5d6379a0/dc36b16d7e455a56.jpg",
+  shopPrice: "￥55.00",
+  shopTitle: "马勒 MAHLE空调滤清器 空调格 空调滤芯 保时捷macan",
+  shopType: "京东商城(汇栗车品专营店) (第三方 )"
+},{
+  shopAddr: "http://item.jd.com/10237104.html",
+  shopImg: "http://img10.360buyimg.com/n7/jfs/t2617/363/1224315686/297221/b05f5d50/57384a56N959a8b34.jpg",
+  shopPrice: "￥67.00",
+  shopTitle: "汉格斯特(Hengst)空调滤E2948LC(奥迪A4/A4L/A5/Q5/保时捷Macan)",
+  shopType: "京东商城 (自营)"
 }]
 export default class List extends Component {
   constructor(props){
@@ -35,7 +59,7 @@ export default class List extends Component {
   };
 
   query = ()=>{
-    this.setState({ lists });
+    this.setState({ dataSource:lists });
     // const {params = {}} = this.state;
     // this.setState({ isLoading:true });
     // api.getShopList(params).then((resp) => {
@@ -48,13 +72,13 @@ export default class List extends Component {
     // });
   };
   render(){
-    if(this.state.isLoading){
-      return(
-        <View style={styles.container}>
-          <ActivityIndicator/>
-        </View>
-      )
-    }
+    // if(this.state.isLoading){
+    //   return(
+    //     <View style={styles.container}>
+    //       <ActivityIndicator/>
+    //     </View>
+    //   )
+    // }
 
     return (
       <View style={styles.container}>
@@ -64,7 +88,7 @@ export default class List extends Component {
             <View>
               <Text>{item.shopTitle}, {item.shopPrice}</Text>
               <Image source={{uri: item.shopImg}}
-                     style={{width: 400, height: 400}} />
+                     style={{width: 200, height: 200}} />
             </View>
           )}
           keyExtractor={(item, index) => item.shopAddr}

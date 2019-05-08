@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import List from '../components/List';
 
 type Props = {}
-export default class Page3 extends Component<Props> {
+export default class ListPage extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to Page3!</Text>
+        <List></List>
       </View>
     );
   }
