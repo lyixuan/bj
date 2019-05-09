@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { FlatList, StyleSheet, ActivityIndicator, Text, View,Image } from 'react-native'
+import { FlatList, StyleSheet, ActivityIndicator, Text, View,Image } from 'react-native';
+import ListItem from './ListItem';
 import {showapi_appid,showapi_sign} from '../util/config';
 import {urlEncode} from '../util/tool';
 import api from '../service/base';
@@ -85,11 +86,7 @@ export default class List extends Component {
         <FlatList
           data={this.state.dataSource}
           renderItem={({item}) => (
-            <View>
-              <Text>{item.shopTitle}, {item.shopPrice}</Text>
-              <Image source={{uri: item.shopImg}}
-                     style={{width: 200, height: 200}} />
-            </View>
+            <ListItem item={item}/>
           )}
           keyExtractor={(item, index) => item.shopAddr}
         />
