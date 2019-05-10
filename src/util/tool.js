@@ -1,3 +1,4 @@
+import { AsyncStorage } from "react-native"
 export function urlEncode(param, key, encode) {
   if (param==null) return '';
   var paramStr = '';
@@ -12,3 +13,5 @@ export function urlEncode(param, key, encode) {
   }
   return paramStr;
 };
+
+

@@ -15,7 +15,6 @@ export const AppStackNavigator = createStackNavigator({
     screen: HomePage,
     navigationOptions:{
       header: null,  //隐藏顶部导航栏
-      // headerTransparent:true,                       //使头部背景透明
     }
   },
   SearchPage: {
@@ -63,7 +62,7 @@ export const AppStackNavigator = createStackNavigator({
     })
   },
 },{//定义配置
-  initialRouteName: 'ListPage',     //设置初始路由为Home
+  initialRouteName: 'HomePage',     //设置初始路由为Home
   navigationOptions: {  // 屏幕导航的默认选项, 也可以在组件内用 static navigationOptions 设置(会覆盖此处的设置)
     header: {  // 导航栏相关设置项
       backTitle: '返回',  // 左上角返回键文字
@@ -80,27 +79,3 @@ export const AppStackNavigator = createStackNavigator({
     headerMode: 'screen', // 导航栏的显示模式, screen: 有渐变透明效果, float: 无透明效果, none: 隐藏导航栏
   },
 });
-
-//
-// const navigationOptions={
-//   title:'详情页',
-//   header:HeaderComponent,                       //自定义头部组件
-//   headerTitle:TitleComponent,                   //自定义标题组件
-//   headerLeft:LeftComponent,                     //自定义左边组件，会替换掉默认返回按钮
-//   headerRight:<Text>右边元素</Text>,            //自定义右边元素，注意这里不可以放组件
-//   headerBackImage:{uri:'mipmap/ic_launcher'},   //自定义返回按钮的图片
-//   headerStyle:{                                 //导航栏样式设置
-//     backgroundColor:'#8bc9ff',
-//   },
-//   headerTintColor:'#fff',                       //按钮、标题颜色设置
-//   headerTitleStyle:{                            //标题字体样式设置
-//     fontWeight:'bold',
-//   },
-//   headerTransparent:true,                       //使头部背景透明
-//   gesturesEnabled:true,                         //开启手势操作
-//   gestureDirection:'inverted',            //修改返回手势操作方向为从右到左，默认为从左到右
-//   gestureResponseDistance:{               //定义手势响应距离屏幕边界的距离
-//     horizontal:100,
-//     vertical:50
-//   }
-// };

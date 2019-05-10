@@ -15,7 +15,7 @@ export default class ListItem extends Component<Props> {
   render() {
     const { item } = this.props;
     return (
-      <View style={styles.container} >
+      <View style={styles.container}>
         <TouchableOpacity onPress={e=>this.jump(e)}>
         <View>
           <View style={{ flex: 1, height: 50 }}>
@@ -26,7 +26,7 @@ export default class ListItem extends Component<Props> {
             <Text>{item.shopTitle}, {item.shopPrice}</Text>
           </View>
         </View>
-      </TouchableOpacity>
+        </TouchableOpacity>
       </View>
     );
   }
