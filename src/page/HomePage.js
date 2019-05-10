@@ -8,7 +8,7 @@ export default class HomePage extends Component<Props> {
     return (
       <View style={styles.container}>
         <Button
-          title={'点我搜索。。'}
+          title={'点我搜索111。。'}
           onPress = {()=>{navigation.navigate('SearchPage',{name:'abcdefc'})}}/>
       </View>
     );
