@@ -86,7 +86,7 @@ export default class List extends Component {
         <FlatList
           data={this.state.dataSource}
           renderItem={({item}) => (
-            <ListItem item={item}/>
+            <ListItem {...this.props} item={item}/>
           )}
           keyExtractor={(item, index) => item.shopAddr}
         />

@@ -1,9 +1,15 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View,Image,TouchableOpacity } from 'react-native'
 
-export default class List extends Component<Props> {
+export default class ListItem extends Component<Props> {
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+  }
   jump = () =>{
-    Props.navigation.navigate('DetailPage',{name:'abcdefc'})
+    console.log(this.props)
+    this.props.navigation.navigate('DetailPage',{name:'abcdefc'})
   };
   render(){
     const {item} = this.props;

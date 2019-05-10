@@ -51,26 +51,26 @@ export const AppStackNavigator = createStackNavigator({
   initialRouteName: 'HomePage',     //设置初始路由为Home
 });
 
-
-const navigationOptions={
-  title:'详情页',
-  header:HeaderComponent,                       //自定义头部组件
-  headerTitle:TitleComponent,                   //自定义标题组件
-  headerLeft:LeftComponent,                     //自定义左边组件，会替换掉默认返回按钮
-  headerRight:<Text>右边元素</Text>,            //自定义右边元素，注意这里不可以放组件
-  headerBackImage:{uri:'mipmap/ic_launcher'},   //自定义返回按钮的图片
-  headerStyle:{                                 //导航栏样式设置
-    backgroundColor:'#8bc9ff',
-  },
-  headerTintColor:'#fff',                       //按钮、标题颜色设置
-  headerTitleStyle:{                            //标题字体样式设置
-    fontWeight:'bold',
-  },
-  headerTransparent:true,                       //使头部背景透明
-  gesturesEnabled:true,                         //开启手势操作
-  gestureDirection:'inverted',            //修改返回手势操作方向为从右到左，默认为从左到右
-  gestureResponseDistance:{               //定义手势响应距离屏幕边界的距离
-    horizontal:100,
-    vertical:50
-  }
-};
+//
+// const navigationOptions={
+//   title:'详情页',
+//   header:HeaderComponent,                       //自定义头部组件
+//   headerTitle:TitleComponent,                   //自定义标题组件
+//   headerLeft:LeftComponent,                     //自定义左边组件，会替换掉默认返回按钮
+//   headerRight:<Text>右边元素</Text>,            //自定义右边元素，注意这里不可以放组件
+//   headerBackImage:{uri:'mipmap/ic_launcher'},   //自定义返回按钮的图片
+//   headerStyle:{                                 //导航栏样式设置
+//     backgroundColor:'#8bc9ff',
+//   },
+//   headerTintColor:'#fff',                       //按钮、标题颜色设置
+//   headerTitleStyle:{                            //标题字体样式设置
+//     fontWeight:'bold',
+//   },
+//   headerTransparent:true,                       //使头部背景透明
+//   gesturesEnabled:true,                         //开启手势操作
+//   gestureDirection:'inverted',            //修改返回手势操作方向为从右到左，默认为从左到右
+//   gestureResponseDistance:{               //定义手势响应距离屏幕边界的距离
+//     horizontal:100,
+//     vertical:50
+//   }
+// };

@@ -8,6 +8,8 @@
     "postinstall": "rndebugger-open"
   },
   "dependencies": {
+    "@react-native-community/slider": "^1.1.1",
+    "@react-native-community/viewpager": "^1.1.6",
     "axios": "^0.16.2",
     "prop-types": "^15.7.2",
     "qs": "^6.7.0",

@@ -2,12 +2,15 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import List from '../components/List';
 
-type Props = {}
-export default class ListPage extends Component<Props> {
+export default class ListPage extends Component {
+  constructor(props) {
+    super(props);
+    console.log(props)
+  }
   render() {
     return (
       <View style={styles.container}>
-        <List></List>
+        <List {...this.props}></List>
       </View>
     );
   }
