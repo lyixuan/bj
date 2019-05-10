@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { showapi_appid, showapi_sign } from "../util/config";
 import api from '../service/base';
+console.log(12,global.storage)
 
-storage.sync = {
+global.storage.sync = {
   // sync方法的名字必须和所存数据的key完全相同
   // 参数从params中解构取出
   // 最后返回所需数据或一个promise
@@ -11,7 +12,7 @@ storage.sync = {
     api.getCaiPuFenLei(params).then((resp) => {
       console.log(12, 12, resp)
       if (resp) {
-        storage.save({
+        global.storage.save({
           key: 'CaiPuFenLei',
           data: resp
         });
@@ -41,7 +42,7 @@ export default class HomePage extends Component<Props> {
   query = () => {
     const { params = {} } = this.state;
     this.setState({ isLoading: true });
-    storage.load({
+    global.storage.load({
       key: 'CaiPuFenLei',
       // autoSync(默认为true)意味着在没有找到数据或数据过期时自动调用相应的sync方法
       autoSync: true, // 设置为false的话，则等待sync方法提供的最新数据(当然会需要更多时间)。
