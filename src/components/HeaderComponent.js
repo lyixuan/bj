@@ -10,10 +10,11 @@ import {
 }from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
-export default  class Header extends Component {
+export default  class HeaderComponent extends Component {
 
   _onPressCity(e) {
 
+    console.log(123)
     Alert.alert(
       'alert',
       '点击了城市',
@@ -82,8 +83,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     backgroundColor: '#e75404',
-    paddingTop: Platform.OS === 'ios' ? 20 : 0,  // 处理iOS状态栏
-    height: Platform.OS === 'ios' ? 60 : 40,   // 处理iOS状态栏
+    paddingTop: Platform.OS === 'ios' ? 40 : 0,  // 处理iOS状态栏
+    height: Platform.OS === 'ios' ? 80 : 40,   // 处理iOS状态栏
     paddingLeft: 5,
     paddingRight: 5,
     paddingBottom: 10,

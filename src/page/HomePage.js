@@ -7,6 +7,12 @@ export default class HomePage extends Component<Props> {
     const {navigation} = this.props;
     return (
       <View style={styles.container}>
+        <Text>第一行</Text>
+        <Text>djslsjdljdls</Text>
+        <Text>djslsjdljdls</Text>
+        <Text>djslsjdljdls</Text>
+        <Text>djslsjdljdls</Text>
+        <Text>鼎航</Text>
         <Button
           title={'点我搜索111。。'}
           onPress = {()=>{navigation.navigate('SearchPage',{name:'abcdefc'})}}/>

@@ -15,17 +15,19 @@ export default class ListItem extends Component<Props> {
   render() {
     const { item } = this.props;
     return (
-      <TouchableOpacity style={styles.container} onPress={() => this.jump()}>
+      <View style={styles.container} >
+        <TouchableOpacity onPress={e=>this.jump(e)}>
         <View>
-          <View style={{ flex: 1, height: 50, backgroundColor: 'powderblue' }}>
-            <Image source={{ uri: item.shopImg }}
-                   style={{ width: 200, height: 200 }}/>
+          <View style={{ flex: 1, height: 50 }}>
+            {/*<Image source={{ uri: item.shopImg }}*/}
+                   {/*style={{ width: 200, height: 200 }}/>*/}
           </View>
-          <View style={{ flex: 1.5, height: 50, backgroundColor: 'skyblue' }}>
+          <View style={{ flex: 1.5, height: 50}}>
             <Text>{item.shopTitle}, {item.shopPrice}</Text>
           </View>
         </View>
       </TouchableOpacity>
+      </View>
     );
   }
 }
@@ -33,7 +35,6 @@ export default class ListItem extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 22,
     flexDirection: 'row'
   },
   item: {

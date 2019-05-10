@@ -13,23 +13,10 @@ import LeftComponent from './src/components/LeftComponent';
 export const AppStackNavigator = createStackNavigator({
   HomePage: {
     screen: HomePage,
-    // headerMode: 'none',    // 隐藏本路由页面头部
-    // navigationOptions:{
-      title:'详情页',
-      header:HeaderComponent,                       //自定义头部组件
-    //   // headerTitle:TitleComponent,                   //自定义标题组件
-    //   // headerLeft:LeftComponent,                     //自定义左边组件，会替换掉默认返回按钮
-      headerRight:<Text>右边元素</Text>,            //自定义右边元素，注意这里不可以放组件
-    //   headerStyle:{                                 //导航栏样式设置
-    //     backgroundColor:'#8bc9ff',
-    //   },
-    //   headerTintColor:'#fff',                       //按钮、标题颜色设置
-    //   headerTitleStyle:{                            //标题字体样式设置
-    //     fontWeight:'bold',
-    //   },
-    //   headerTransparent:true,                       //使头部背景透明
-    //   gesturesEnabled:true,                         //开启手势操作
-    // }
+    navigationOptions:{
+      header: null,  //隐藏顶部导航栏
+      // headerTransparent:true,                       //使头部背景透明
+    }
   },
   SearchPage: {
     screen: SearchPage,
@@ -51,8 +38,22 @@ export const AppStackNavigator = createStackNavigator({
   },
   ListPage: {
     screen: ListPage,
-    navigationOptions: {
-      title: 'This is ListPage'
+    navigationOptions:{
+      header: null,  //隐藏顶部导航栏
+      // title:'详情页',
+      // header:HeaderComponent,                       //自定义头部组件
+      //   // headerTitle:TitleComponent,                   //自定义标题组件
+      //   // headerLeft:LeftComponent,                     //自定义左边组件，会替换掉默认返回按钮
+      // headerRight:<Text>右边元素</Text>,            //自定义右边元素，注意这里不可以放组件
+      //   headerStyle:{                                 //导航栏样式设置
+      //     backgroundColor:'#8bc9ff',
+      //   },
+      //   headerTintColor:'#fff',                       //按钮、标题颜色设置
+      //   headerTitleStyle:{                            //标题字体样式设置
+      //     fontWeight:'bold',
+      //   },
+      // headerTransparent:true,                       //使头部背景透明，且不占位置
+        // gesturesEnabled:true,                         //开启手势操作
     }
   },
   DetailPage: {
@@ -62,7 +63,22 @@ export const AppStackNavigator = createStackNavigator({
     })
   },
 },{//定义配置
-  initialRouteName: 'HomePage',     //设置初始路由为Home
+  initialRouteName: 'ListPage',     //设置初始路由为Home
+  navigationOptions: {  // 屏幕导航的默认选项, 也可以在组件内用 static navigationOptions 设置(会覆盖此处的设置)
+    header: {  // 导航栏相关设置项
+      backTitle: '返回',  // 左上角返回键文字
+      style: {
+        // backgroundColor: '#fff'
+      },
+      titleStyle: {
+        // color: 'green'
+      }
+    },
+    cardStack: {
+      gesturesEnabled: true
+    },
+    headerMode: 'screen', // 导航栏的显示模式, screen: 有渐变透明效果, float: 无透明效果, none: 隐藏导航栏
+  },
 });
 
 //
