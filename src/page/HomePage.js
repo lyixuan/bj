@@ -108,29 +108,53 @@ export default class HomePage extends Component<Props> {
             }}>{caishi.name}</Text>
             </View>
           </View>
-          <View>
-            <View style={{flex: 1, flexDirection: 'row',marginTop:20,justifyContent: 'space-between',}}>
+          <View style={{flex: 1,flexDirection: 'column'}}>
+            <View style={{flex: 0, flexDirection: 'row',height:100,marginTop:20,justifyContent: 'space-between',}}>
               <View style={styles.contentInner}>
                 <View  style={styles.imgWrap}>
                   <Image source={require('../img/kuaishoucai.png')}
                          style={styles.imgStyle}/>
                 </View>
-                <Text style={styles.contentText}>素菜</Text>
+                <Text style={styles.contentText}>家常菜</Text>
+              </View>
+              <View style={styles.contentInner}>
+                <Image source={require('../img/kuaishoucai.png')}
+                       style={styles.imgStyle}/>
+                <Text style={styles.contentText}>快手菜</Text>
+              </View>
+              <View style={styles.contentInner}>
+                <Image source={require('../img/kuaishoucai.png')}
+                       style={styles.imgStyle}/>
+                <Text style={styles.contentText}>创意菜</Text>
               </View>
               <View style={styles.contentInner}>
                 <Image source={require('../img/kuaishoucai.png')}
                        style={styles.imgStyle}/>
                 <Text style={styles.contentText}>素菜</Text>
               </View>
+            </View>
+            <View style={{flex: 0,height:100, flexDirection: 'row',marginTop:15,justifyContent: 'space-between',}}>
               <View style={styles.contentInner}>
-                <Image source={require('../img/kuaishoucai.png')}
-                       style={styles.imgStyle}/>
-                <Text style={styles.contentText}>素菜</Text>
+                <View  style={styles.imgWrap}>
+                  <Image source={require('../img/kuaishoucai.png')}
+                         style={styles.imgStyle}/>
+                </View>
+                <Text style={styles.contentText}>凉菜</Text>
               </View>
               <View style={styles.contentInner}>
                 <Image source={require('../img/kuaishoucai.png')}
                        style={styles.imgStyle}/>
-                <Text style={styles.contentText}>素菜</Text>
+                <Text style={styles.contentText}>烘焙</Text>
+              </View>
+              <View style={styles.contentInner}>
+                <Image source={require('../img/kuaishoucai.png')}
+                       style={styles.imgStyle}/>
+                <Text style={styles.contentText}>面食</Text>
+              </View>
+              <View style={styles.contentInner}>
+                <Image source={require('../img/kuaishoucai.png')}
+                       style={styles.imgStyle}/>
+                <Text style={styles.contentText}>汤</Text>
               </View>
             </View>
           </View>
@@ -226,6 +250,7 @@ const styles = StyleSheet.create({
   contentText:{
     marginTop:5,
     width:74,
+    color:'#666',
     textAlign:'center'
   },
   imgStyle: {
