@@ -2,7 +2,7 @@
 import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-community/async-storage';
 
-const mystorage = new Storage({
+export default storage = new Storage({
   // 最大容量，默认值1000条数据循环存储
   size: 1000,
 
@@ -34,6 +34,3 @@ const mystorage = new Storage({
 // 注意：全局变量一定是先声明，后使用
 // 如果你在某处调用storage报错未定义
 // 请检查global.storage = storage语句是否确实已经执行过了
-
-
-global.storage = mystorage;
