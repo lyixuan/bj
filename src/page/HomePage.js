@@ -112,48 +112,60 @@ export default class HomePage extends Component<Props> {
             <View style={{flex: 0, flexDirection: 'row',height:100,marginTop:20,justifyContent: 'space-between',}}>
               <View style={styles.contentInner}>
                 <View  style={styles.imgWrap}>
-                  <Image source={require('../img/kuaishoucai.png')}
+                  <Image source={require('../img/jiachangcai.png')}
                          style={styles.imgStyle}/>
                 </View>
                 <Text style={styles.contentText}>家常菜</Text>
               </View>
               <View style={styles.contentInner}>
-                <Image source={require('../img/kuaishoucai.png')}
-                       style={styles.imgStyle}/>
+                <View  style={styles.imgWrap}>
+                  <Image source={require('../img/kuaishoucai.png')}
+                         style={styles.imgStyle}/>
+                </View>
                 <Text style={styles.contentText}>快手菜</Text>
               </View>
               <View style={styles.contentInner}>
-                <Image source={require('../img/kuaishoucai.png')}
-                       style={styles.imgStyle}/>
+                <View  style={styles.imgWrap}>
+                  <Image source={require('../img/chuangyicai.png')}
+                         style={styles.imgStyle}/>
+                </View>
                 <Text style={styles.contentText}>创意菜</Text>
               </View>
               <View style={styles.contentInner}>
-                <Image source={require('../img/kuaishoucai.png')}
-                       style={styles.imgStyle}/>
+                <View  style={styles.imgWrap}>
+                  <Image source={require('../img/sucai.png')}
+                         style={styles.imgStyle}/>
+                </View>
                 <Text style={styles.contentText}>素菜</Text>
               </View>
             </View>
             <View style={{flex: 0,height:100, flexDirection: 'row',marginTop:15,justifyContent: 'space-between',}}>
               <View style={styles.contentInner}>
                 <View  style={styles.imgWrap}>
-                  <Image source={require('../img/kuaishoucai.png')}
+                  <Image source={require('../img/liangcai.png')}
                          style={styles.imgStyle}/>
                 </View>
                 <Text style={styles.contentText}>凉菜</Text>
               </View>
               <View style={styles.contentInner}>
-                <Image source={require('../img/kuaishoucai.png')}
-                       style={styles.imgStyle}/>
+                <View  style={styles.imgWrap}>
+                  <Image source={require('../img/hongpei.png')}
+                         style={styles.imgStyle}/>
+                </View>
                 <Text style={styles.contentText}>烘焙</Text>
               </View>
               <View style={styles.contentInner}>
-                <Image source={require('../img/kuaishoucai.png')}
-                       style={styles.imgStyle}/>
+                <View  style={styles.imgWrap}>
+                  <Image source={require('../img/mianshi.png')}
+                         style={styles.imgStyle}/>
+                </View>
                 <Text style={styles.contentText}>面食</Text>
               </View>
               <View style={styles.contentInner}>
-                <Image source={require('../img/kuaishoucai.png')}
-                       style={styles.imgStyle}/>
+                <View  style={styles.imgWrap}>
+                  <Image source={require('../img/tang.png')}
+                         style={styles.imgStyle}/>
+                </View>
                 <Text style={styles.contentText}>汤</Text>
               </View>
             </View>
@@ -262,9 +274,11 @@ const styles = StyleSheet.create({
     height:74,
     // 设置图片填充模式
     resizeMode:'contain',
-    borderRadius:10,
+    borderRadius:15,
+    // borderWidth:10,
+    // borderColor:'#f0f0f0',
   },
   imgWrap:{
-    shadowOffset:{ width:3, height:3 }, shadowColor:'#bbb', shadowOpacity:0.5, shadowRadius:10
+    shadowOffset:{ width:3, height:3 }, shadowColor:'#bbb', shadowOpacity:0.8, shadowRadius:15
   }
 })
