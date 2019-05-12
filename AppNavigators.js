@@ -1,6 +1,7 @@
 import { createStackNavigator,createBottomTabNavigator,createMaterialTopTabNavigator } from 'react-navigation'; // https://reactnavigation.org/docs/zh-Hans/getting-started.html
 import React from 'react';
 // import Ionicons from 'react-native-vector-icons/Ionicons';
+import LinearGradient from 'react-native-linear-gradient'
 import {Button,Text} from 'react-native'
 import HomePage from './src/page/HomePage';
 import SearchPage from './src/page/SearchPage';
@@ -19,19 +20,8 @@ export const AppStackNavigator = createStackNavigator({
   },
   SearchPage: {
     screen: SearchPage,
-    navigationOptions: (props)=>{
-      const {navigation}=props;
-      const {state, setParams} = navigation;
-      const {params} = state;
-      return {
-        title: params&&params.title? params.title:'This is SearchPage',
-        headerRight:(
-          <Button
-            title={params&&params.mode === 'edit'?'保存':'编辑'}
-            onPress={()=>setParams({mode:params.mode==='edit'?'':'edit'})}
-          />
-        )
-      }
+    navigationOptions:{
+      header: null,  //隐藏顶部导航栏
     }
 
   },
@@ -63,7 +53,8 @@ export const AppStackNavigator = createStackNavigator({
   },
 },{//定义配置
   initialRouteName: 'HomePage',     //设置初始路由为Home
-  navigationOptions: {  // 屏幕导航的默认选项, 也可以在组件内用 static navigationOptions 设置(会覆盖此处的设置)
+  // initialRouteName: 'SearchPage',     //设置初始路由为Home
+  navigationOptions: {  // 屏s幕导航的默认选项, 也可以在组件内用 static navigationOptions 设置(会覆盖此处的设置)
     header: {  // 导航栏相关设置项
       backTitle: '返回',  // 左上角返回键文字
       style: {

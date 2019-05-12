@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 import {
   Alert,
   View,
@@ -7,123 +7,87 @@ import {
   StyleSheet,
   Platform,
   TouchableOpacity,
-}from 'react-native';
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-
+  ImageBackground,
+  Image
+}from 'react-native'
+import LinearGradient from 'react-native-linear-gradient'
 export default  class HeaderComponent extends Component {
 
-  _onPressCity(e) {
-
-    console.log(123)
-    Alert.alert(
-      'alert',
-      '点击了城市',
-    );
-
+  _onPressSearch =()=> {
+    this.inputSubmit();
   }
-
-  _onPressSearch(e) {
-    Alert.alert(
-      'alert',
-      '点击了搜索',
-    );
+  inputChange=(text)=>{
+    this.props.onTextChange(text);
   }
-
-  _onPressIcon(e) {
-    Alert.alert(
-      'alert',
-      '点击了icon',
-    );
+  inputSubmit=(e)=>{
+    this.props.onSubmit();
   }
-
-  render() {
+  render () {
+    const {navigation,text} = this.props
     return (
-      <View style={styles.container}>
-
-        <TouchableOpacity onPress={e=>this._onPressCity(e)}>
-          <View style={styles.cityDropdown}>
-            <Text style={styles.cityTitle}>三亚</Text>
-            <FontAwesomeIcon name="angle-double-down" color="#ffffff" size={20}/>
-          </View>
+      <LinearGradient style={styles.container} colors={['#FD6C1F', '#F98D23']}
+                      start={{x: 1, y: 0}}
+                      end={{x: 0, y: 1}}>
+        <TouchableOpacity onPress={() => {
+          navigation.navigate('HomePage')
+        }}>
+          <Image source={require('../img/back.png')}
+                 style={{width: 24, height: 24,marginTop:7}}/>
         </TouchableOpacity>
+        <ImageBackground source={require('../img/search2.png')} style={styles.searchBox}/>
+        <TextInput autoFocus={true}
+                   value={text}
+                   clearButtonMode="while-editing"
+                   onChangeText={(text)=>this.inputChange(text)}
+                   onSubmitEditing={(v)=>this.inputSubmit(v)}
+                   style={styles.searchTextInput}
+                   placeholder={'上万种菜色供您选择'}
+        />
 
-
-        <View style={styles.searchBar}>
-          <TouchableOpacity onPress={e=>this._onPressSearch(e)}>
-            {
-              Platform.OS === 'ios' ? (
-                <TextInput editable={false} style={styles.searchTextInput}
-                           placeholder={'请输入公寓名称搜索...'}></TextInput>) : (
-                <Text style={styles.searchTextInput}>请输入公寓名称搜索...</Text>)
-            }
-          </TouchableOpacity>
-        </View>
-
-
-        <View style={styles.rightIcons}>
-          <TouchableOpacity onPress={e=>this._onPressIcon(e)}>
-            <FontAwesomeIcon name="qrcode" color="#ffffff" size={20}/>
-          </TouchableOpacity>
-        </View>
-
-
-        <View style={styles.rightIcons}>
-          <TouchableOpacity onPress={e=>this._onPressIcon(e)}>
-            <FontAwesomeIcon name="bell" color="#ffffff" size={20}/>
-          </TouchableOpacity>
-        </View>
-
-      </View>
-    );
+        <TouchableOpacity style={styles.rightIcons} onPress={this._onPressSearch}>
+          <Text style={{color:'#fff',fontSize:16}}>搜索</Text>
+        </TouchableOpacity>
+      </LinearGradient>
+    )
   }
 }
-
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    backgroundColor: '#e75404',
-    paddingTop: Platform.OS === 'ios' ? 40 : 0,  // 处理iOS状态栏
-    height: Platform.OS === 'ios' ? 80 : 40,   // 处理iOS状态栏
+    paddingTop: 40,
+    height: 80,
     paddingLeft: 5,
     paddingRight: 5,
     paddingBottom: 10,
   },
-  cityDropdown: {
-    marginTop: 5,
-    flexDirection: 'row',
-    paddingTop: 5,
-    marginLeft: 10,
-    marginRight: 5,
-    backgroundColor: '#e75404',
-  },
-  cityTitle: {
-    color: '#ffffff',
-    paddingTop: Platform.OS === 'ios' ? 2 : 0,
-    marginRight: 2,
-  },
-  searchBar: {
-    height: 50,
-    flex: 1,
+  searchBox:{
+    position: 'absolute',
+    top: 52,
+    left: 46,
+    width:16,
+    height:16,
+    zIndex:1000
   },
   searchTextInput: {
-    borderRadius: 10,
-    textAlignVertical: 'top',
-    color: '#ccc',
+    flex:1,
+    borderRadius: 5,
+    color: '#333',
     backgroundColor: 'white',
     height: 25,
-    paddingLeft: 8,
+    lineHeight:25,
+    paddingLeft: 32,
     paddingTop: 5,
-    marginRight: 5,
+    marginRight: 12,
+    marginLeft: 10,
     marginTop: 6,
-    fontSize: 12,
+    fontSize: 14,
     textDecorationLine: 'none',
   },
   rightIcons: {
     marginTop: 5,
     paddingTop: 5,
-    marginLeft: 2,
-    marginRight: 5,
-  }
+    marginRight: 10,
+  },
 
-});
+})

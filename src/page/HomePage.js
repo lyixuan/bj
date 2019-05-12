@@ -84,7 +84,7 @@ export default class HomePage extends Component<Props> {
             <Text style={styles.title2}>小白做菜必备烹饪助手</Text>
           </View>
           <Card style={styles.searchBox1}/>
-          <TouchableOpacity activeOpacity={0.95} style={styles.searchBox2}
+          <TouchableOpacity activeOpacity={0.99} style={styles.searchBox2}
                             onPress={() => {
                               navigation.navigate('SearchPage',
                                 {name: 'abcdefc'})
@@ -100,7 +100,7 @@ export default class HomePage extends Component<Props> {
         </LinearGradient>
         <View style={styles.content}>
           <View style={styles.contentTop}>
-            <View style={styles.contentLine}></View>
+            <View style={styles.contentLine}/>
             <View style={styles.contentCat}><Text style={{
               fontSize: 20,
               color:'#333',
@@ -181,11 +181,11 @@ const styles = StyleSheet.create({
   header: {
     overflow: 'visible',
     height: 160,
-    padding: 20,
-    marginBottom: 60,
+    padding: 15,
+    marginBottom: 50,
   },
   title: {
-    marginTop: 50,
+    marginTop: 40,
     color: '#fff',
     textAlign: 'left',
   },
@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
   searchBox1: {
     position: 'absolute',
     top: 135,
-    left: 20,
+    left: 15,
     width: '100%',
     height: 50,
     opacity: 0.15,
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
   searchBox2: {
     position: 'absolute',
     top: 135,
-    left: 20,
+    left: 15,
     width: '100%',
     height: 50,
     borderRadius: 5,
@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
     color: '#B8B8B8',
   },
   content: {
-    padding: 20,
+    padding: 15,
     flex: 1,
     width: '100%',
   },
