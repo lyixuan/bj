@@ -66,13 +66,6 @@ export default class ListPage extends Component {
   }
   render() {
     const {navigation} = this.props;
-    if(this.state.isLoading){
-      return(
-        <View style={styles.container}>
-          <ActivityIndicator/>
-        </View>
-      )
-    }
     return (
       <View style={styles.container}>
         <HeaderComponent
@@ -81,7 +74,14 @@ export default class ListPage extends Component {
           onTextChange={(text)=>this.onchange(text)}
           onSubmit={this.onSubmit}
         />
-        <List {...this.props} resultData={this.state.resultData}></List>
+        {this.state.isLoading?(
+          <View style={styles.container1}>
+            <ActivityIndicator/>
+          </View>
+        ):(
+          <List {...this.props} resultData={this.state.resultData}></List>
+        )}
+
       </View>
     );
   }
@@ -91,4 +91,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  container1:{
+    marginTop:'30%'
+  }
 });

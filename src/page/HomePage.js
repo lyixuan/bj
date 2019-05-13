@@ -91,7 +91,7 @@ export default class HomePage extends Component<Props> {
             <View style={styles.searchBox3}>
               <View>
                 <Image source={require('../img/search.png')}
-                       style={{width: 18, height: 18}}/>
+                       style={{width: 20, height: 20,marginTop:2}}/>
               </View>
               <Text style={styles.searchText}> 今天想吃点什么？</Text>
             </View>
@@ -228,8 +228,8 @@ const styles = StyleSheet.create({
   searchText: {
     textAlign: 'center',
     height: 50,
-    lineHeight: 50,
-    fontSize: 15,
+    lineHeight: 53,
+    fontSize: 16,
     color: '#B8B8B8',
   },
   content: {
