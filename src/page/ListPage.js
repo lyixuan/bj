@@ -1,18 +1,87 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View,ActivityIndicator} from 'react-native';
 import List from '../components/List';
 import HeaderComponent from '../components/HeaderComponent';
-
+import api from '../service/base'
+import storage from '../util/storage'
+import { juhe_key } from '../util/config'
 export default class ListPage extends Component {
   constructor(props) {
     super(props);
-    console.log(props)
+    const {params} = this.props.navigation.state
+    this.state = {
+      isLoading:false,
+      resultData:{},
+      text:params.text,
+      key:juhe_key
+    };
+  }
+  componentDidMount() {
+    this.quary();
+  }
+  store=()=>{
+    const {text} = this.state;
+    storage.load({
+      key: 'History',
+    }).then(ret => {
+      // 如果找到数据，则在then方法中返回
+      ret.push(text)
+      const list =Array.from(new Set(ret));
+      storage.save({
+        key: 'History',
+        data: list,
+      })
+    }).catch(err => {
+      // 如果没有找到数据且没有sync方法，
+      // 或者有其他异常，则在catch中返回
+      storage.save({
+        key: 'History',
+        data: [text],
+      })
+    });
+  }
+  quary=()=>{
+    const {key,text} = this.state;
+    this.setState({
+      isLoading:true
+    })
+    api.getCaiPuList({key,menu:text}).then((resp) => {
+      if (resp) {
+        this.store();// 存储查询历史记录
+        this.setState({resultData: resp}) // 展示列表
+      } else {
+        this.setState({resultData: {}})
+      }
+      this.setState({
+        isLoading:false
+      })
+    })
+  }
+  onchange = (text)=>{
+    this.setState({text})
+  }
+  onSubmit = ()=>{
+    const {navigation} = this.props;
+    this.quary()
   }
   render() {
+    const {navigation} = this.props;
+    if(this.state.isLoading){
+      return(
+        <View style={styles.container}>
+          <ActivityIndicator/>
+        </View>
+      )
+    }
     return (
       <View style={styles.container}>
-        <HeaderComponent/>
-        <List {...this.props}></List>
+        <HeaderComponent
+          text={this.state.text}
+          navigation={navigation}
+          onTextChange={(text)=>this.onchange(text)}
+          onSubmit={this.onSubmit}
+        />
+        <List {...this.props} resultData={this.state.resultData}></List>
       </View>
     );
   }
@@ -21,10 +90,5 @@ export default class ListPage extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
   },
 });

@@ -43,52 +43,17 @@ const lists = [{
   shopType: "京东商城 (自营)"
 }]
 export default class List extends Component {
-  constructor(props){
-    super(props);
-    this.state ={
-      isLoading: false,
-      dataSource: [],
-      params:{
-        showapi_appid,
-        showapi_sign,
-        keyWords:'mac'
-      },
-    };
-  }
-  componentDidMount(){
-    this.query();
-  };
-
-  query = ()=>{
-    this.setState({ dataSource:lists });
-    // const {params = {}} = this.state;
-    // this.setState({ isLoading:true });
-    // api.getShopList(params).then((resp) => {
-    //   console.log(12,12,resp)
-    //   this.setState({ isLoading:false });
-    //   if (resp.ret_code === 0) {
-    //     const dataSource = resp.shopList;
-    //     this.setState({ dataSource });
-    //   }
-    // });
-  };
   render(){
-    // if(this.state.isLoading){
-    //   return(
-    //     <View style={styles.container}>
-    //       <ActivityIndicator/>
-    //     </View>
-    //   )
-    // }
-
+    const {resultData} = this.props;
+    const {data=[]} = resultData;
     return (
       <View style={styles.container}>
         <FlatList
-          data={this.state.dataSource}
+          data={data}
           renderItem={({item}) => (
             <ListItem {...this.props} item={item}/>
           )}
-          keyExtractor={(item, index) => item.shopAddr}
+          keyExtractor={(item, index) => item.id}
         />
       </View>
     );

@@ -19,11 +19,11 @@ export default class ListItem extends Component<Props> {
         <TouchableOpacity onPress={e=>this.jump(e)}>
         <View>
           <View style={{ flex: 1, height: 50 }}>
-            {/*<Image source={{ uri: item.shopImg }}*/}
-                   {/*style={{ width: 200, height: 200 }}/>*/}
+            <Image source={{ uri: item.albums[0] }}
+                   style={{ width: 200, height: 200 }}/>
           </View>
           <View style={{ flex: 1.5, height: 50}}>
-            <Text>{item.shopTitle}, {item.shopPrice}</Text>
+            <Text>{item.title}</Text>
           </View>
         </View>
         </TouchableOpacity>

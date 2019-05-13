@@ -62,7 +62,6 @@ export default class HomePage extends Component<Props> {
     }).then(ret => {
       // 如果找到数据，则在then方法中返回
       let caishi = {}
-      console.log('ret', ret)
       ret.forEach((v) => {
         if (v.parentId === '10001') {
           caishi = v

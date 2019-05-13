@@ -1,31 +1,63 @@
 import React, {Component} from 'react';
 import {Button,StyleSheet, Text, View,TextInput,TouchableOpacity,ScrollView} from 'react-native';
 import HeaderComponent from '../components/HeaderComponent';
-
+import { juhe_key } from '../util/config'
+import storage from '../util/storage'
 export default class SearchPage extends Component<Props> {
   constructor(props) {
     super(props);
     this.state = {
-      text:''
+      text:'',
+      key: juhe_key,
+      historyStoreList:[],
     };
+  }
+  componentDidMount() {
+    this.historyStore();
+  }
+  historyStore=()=>{
+    storage.load({
+      key: 'History',
+    }).then(ret => {
+      this.setState({
+        historyStoreList:ret
+      })
+    }).catch(err => {
+      // 如果没有找到数据且没有sync方法，
+      // 或者有其他异常，则在catch中返回
+      this.setState({
+        historyStoreList:[]
+      })
+    });
   }
   click = (text)=>{
     this.setState({
       text
-    },this.onSubmit())
+    },()=>this.onSubmit())
 
+  }
+  clear = ()=>{
+    storage.remove({
+      key: 'History',
+    });
+    this.setState({
+      historyStoreList:[]
+    })
   }
   onchange = (text)=>{
     this.setState({text})
   }
   onSubmit = ()=>{
-    console.log(22)
-
+    const {navigation} = this.props;
+    const {text}=this.state
+    if (!text) return
+    navigation.navigate('ListPage', {text} )
   }
   render() {
     const {navigation} = this.props;
+    const {historyStoreList} = this.state;
     const hot = ['红烧鱼','杏鲍菇','酸辣粉','胡萝卜','可乐鸡翅','番茄炒蛋','鱼香茄子','京酱肉丝','带鱼','土豆丝'].map((v)=>(<TouchableOpacity onPress={()=>this.click(v)} style={styles.box2Inner}  key={v}><Text style={{fontSize:15, color:'#333'}}>{v}</Text></TouchableOpacity>))
-    const nest = ['红烧鱼','杏鲍菇','酸辣粉','胡萝卜','可乐鸡翅','番茄炒蛋','鱼香茄子','京酱肉丝','带鱼','土豆丝'].map((v)=>(<TouchableOpacity onPress={()=>this.click(v)} style={styles.box22Inner}  key={v}><Text style={{fontSize:15, color:'#333'}}>{v}</Text></TouchableOpacity>))
+    const historyStoreMap = historyStoreList.map((v)=>(<TouchableOpacity onPress={()=>this.click(v)} style={styles.box22Inner}  key={v}><Text style={{fontSize:15, color:'#333'}}>{v}</Text></TouchableOpacity>))
     return (
     <View style={styles.container}>
       <HeaderComponent
@@ -41,12 +73,31 @@ export default class SearchPage extends Component<Props> {
         <View style={styles.box2}>
           {hot}
         </View>
-        <View style={styles.box11}>
-          <Text style={styles.boxInner}>最近搜索</Text>
-        </View>
-        <View style={styles.box22}>
-          {nest}
-        </View>
+        {
+          historyStoreList.length===0?(
+            <View>
+              <View style={styles.box11}>
+                <Text style={styles.boxInner}>最近搜索</Text>
+                <TouchableOpacity onPress={()=>this.clear()}><Text style={styles.del}>清空</Text></TouchableOpacity>
+              </View>
+              <View style={styles.box22}>
+                <View style={styles.box22Inner}>
+                  <Text style={{fontSize:15, color:'#666',textAlign:'center'}}>暂无数据</Text>
+                </View>
+              </View>
+            </View>
+          ):(
+            <View>
+              <View style={styles.box11}>
+                <Text style={styles.boxInner}>最近搜索</Text>
+                <TouchableOpacity onPress={()=>this.clear()}><Text style={styles.del}>清空</Text></TouchableOpacity>
+              </View>
+              <View style={styles.box22}>
+                {historyStoreMap}
+              </View>
+            </View>
+          )
+        }
       </ScrollView>
     </View>
     );
@@ -66,6 +117,8 @@ const styles = StyleSheet.create({
     paddingLeft:15
   },
   box11:{
+    flexDirection:'row',
+    justifyContent: 'space-between',
     backgroundColor:'#fff',
     textAlign: 'left',
     borderBottomColor:'#F7F7F7',
@@ -78,6 +131,12 @@ const styles = StyleSheet.create({
     paddingBottom:12,
     fontSize:18,
     color:'#919191',
+  },
+  del:{
+    paddingTop:15,
+    paddingRight:15,
+    fontSize:14,
+    color:'#616161',
   },
   box2:{
     height:90,

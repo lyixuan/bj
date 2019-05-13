@@ -34,7 +34,7 @@ export default  class HeaderComponent extends Component {
           <Image source={require('../img/back.png')}
                  style={{width: 24, height: 24,marginTop:7}}/>
         </TouchableOpacity>
-        <ImageBackground source={require('../img/search2.png')} style={styles.searchBox}/>
+        <ImageBackground source={require('../img/search2.png')} style={styles.searchIcon}/>
         <TextInput autoFocus={true}
                    value={text}
                    clearButtonMode="while-editing"
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     paddingRight: 5,
     paddingBottom: 10,
   },
-  searchBox:{
+  searchIcon:{
     position: 'absolute',
     top: 52,
     left: 46,
@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
     color: '#333',
     backgroundColor: 'white',
     height: 25,
-    lineHeight:25,
     paddingLeft: 32,
     paddingTop: 5,
     marginRight: 12,
