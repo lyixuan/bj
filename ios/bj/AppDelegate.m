@@ -27,6 +27,7 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  [SplashScreen show];   // 启动后进入启动页
   return YES;
 }
 
