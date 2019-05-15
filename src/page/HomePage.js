@@ -12,6 +12,7 @@ import { Card } from 'react-native-shadow-cards'
 import { juhe_key } from '../util/config'
 import api from '../service/base'
 import storage from '../util/storage'
+import SplashScreen from "rn-splash-screen";  //https://blog.csdn.net/huxinguang_ios/article/details/79892440
 
 storage.sync = {
   // sync方法的名字必须和所存数据的key完全相同
@@ -44,6 +45,11 @@ export default class HomePage extends Component<Props> {
   }
 
   componentDidMount () {
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 3000);//延时2秒消失
+    // 放在componentDidMount方法中可以让app的界面先加载出来，避免出现白屏闪一下的问题。
+
     this.query()
   };
 

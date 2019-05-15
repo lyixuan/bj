@@ -10,7 +10,8 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-#import "RNSplashScreen.h"  //   启动后进入启动页
+
+#import <RCTSplashScreen/RCTSplashScreen.h>
 
 @implementation AppDelegate
 
@@ -28,7 +29,7 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-  [RNSplashScreen show];  //   启动后进入启动页
+  [RCTSplashScreen show:rootView];
   return YES;
 }
 

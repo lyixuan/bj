@@ -138,6 +138,7 @@ android {
 }
 
 dependencies {
+    implementation project(':rn-splash-screen')
     implementation project(':react-native-splash-screen')
     implementation project(':react-native-svg')
     implementation project(':react-native-linear-gradient')
