@@ -11,7 +11,7 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
-#import <RCTSplashScreen/RCTSplashScreen.h>
+//#import <RCTSplashScreen/RCTSplashScreen.h>
 
 @implementation AppDelegate
 
@@ -29,7 +29,7 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-  [RCTSplashScreen show:rootView];
+//  [RCTSplashScreen show:rootView];
   return YES;
 }
 

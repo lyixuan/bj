@@ -46,7 +46,7 @@ export default class HomePage extends Component<Props> {
 
   componentDidMount () {
     setTimeout(() => {
-      SplashScreen.hide();
+      // SplashScreen.hide();
     }, 3000);//延时2秒消失
     // 放在componentDidMount方法中可以让app的界面先加载出来，避免出现白屏闪一下的问题。
 
