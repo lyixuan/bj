@@ -44,6 +44,7 @@
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		49D3D23328924FA093ED1174 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE838626094445A38DAB6024 /* FontAwesome5_Brands.ttf */; };
 		5391A3C96D72478C8A8495BB /* libRCTSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5219F106ACA8465485917CB2 /* libRCTSplashScreen.a */; };
+		544CAD7F228D3B460017B31F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 544CAD4C228D3B460017B31F /* LaunchScreen.xib */; };
 		57A9F391EB8C470BA0A5BCCF /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAAB6E7ABDE54425A0615F8B /* Entypo.ttf */; };
 		5D9AA89E0D524271821DC5C6 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1330632B4BEB4410B3CEBA0E /* libRNSVG.a */; };
 		7082DB0DE1AE42D9836F6875 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E34C386AF09946319D024697 /* SimpleLineIcons.ttf */; };
@@ -461,6 +462,7 @@
 		39D967F48A0145BBAAE1401C /* RNCViewpager.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCViewpager.xcodeproj; path = "../node_modules/@react-native-community/viewpager/ios/RNCViewpager.xcodeproj"; sourceTree = "<group>"; };
 		4839FBA8BF774D0B858BABA9 /* libRNSVG-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNSVG-tvOS.a"; sourceTree = "<group>"; };
 		5219F106ACA8465485917CB2 /* libRCTSplashScreen.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTSplashScreen.a; sourceTree = "<group>"; };
+		544CAD4D228D3B460017B31F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = bj/Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		5781DF36396F4CD9835F5F03 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		5952A17633EA4D178C893EA2 /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
 		59B22483064A4D6CBF63D78D /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
@@ -641,6 +643,7 @@
 		13B07FAE1A68108700A75B9A /* bj */ = {
 			isa = PBXGroup;
 			children = (
+				544CAD4C228D3B460017B31F /* LaunchScreen.xib */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -1450,6 +1453,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				CFBD20EAAB7942FD9992AF0B /* AntDesign.ttf in Resources */,
 				57A9F391EB8C470BA0A5BCCF /* Entypo.ttf in Resources */,
+				544CAD7F228D3B460017B31F /* LaunchScreen.xib in Resources */,
 				FC7732D3E9F9497DB7FC5803 /* EvilIcons.ttf in Resources */,
 				0AC4B6482EAC428F93D8E889 /* Feather.ttf in Resources */,
 				ECEEA3FFD41743C29D38FA90 /* FontAwesome.ttf in Resources */,
@@ -1563,6 +1567,17 @@
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		544CAD4C228D3B460017B31F /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				544CAD4D228D3B460017B31F /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {

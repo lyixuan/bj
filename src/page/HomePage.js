@@ -12,7 +12,8 @@ import { Card } from 'react-native-shadow-cards'
 import { juhe_key } from '../util/config'
 import api from '../service/base'
 import storage from '../util/storage'
-import SplashScreen from "rn-splash-screen";  //https://blog.csdn.net/huxinguang_ios/article/details/79892440
+import SplashScreen from "rn-splash-screen";
+import CtgListPage from "./CtgListPage";  //https://blog.csdn.net/huxinguang_ios/article/details/79892440
 
 storage.sync = {
   // sync方法的名字必须和所存数据的key完全相同
@@ -80,6 +81,37 @@ export default class HomePage extends Component<Props> {
   render () {
     const {navigation} = this.props
     const {caishi = {}} = this.state
+    const categor = caiList.map((v)=>(
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('CtgListPage',
+            {name: v.name,cid:v.id})
+        }}>
+        <View style={styles.contentInner}>
+          <View  style={styles.imgWrap}>
+            <Image source={require(v.img)}
+                   style={styles.imgStyle}/>
+          </View>
+          <Text style={styles.contentText}>{v.name}</Text>
+        </View>
+      </TouchableOpacity>
+      ))
+
+    const categor2 = caiList2.map((v)=>(
+      <TouchableOpacity
+                        onPress={() => {
+                          navigation.navigate('CtgListPage',
+                            {name: v.name,cid:v.id})
+                        }}>
+        <View style={styles.contentInner}>
+          <View  style={styles.imgWrap}>
+            <Image source={require(v.img)}
+                   style={styles.imgStyle}/>
+          </View>
+          <Text style={styles.contentText}>{v.name}</Text>
+        </View>
+      </TouchableOpacity>
+      ))
     return (
       <View style={styles.container}>
         <LinearGradient colors={['#FD6C1F', '#F98D23']} start={{x: 1, y: 0}}
@@ -99,7 +131,7 @@ export default class HomePage extends Component<Props> {
                 <Image source={require('../img/search.png')}
                        style={{width: 20, height: 20,marginTop:2}}/>
               </View>
-              <Text style={styles.searchText}> 今天想吃点什么？</Text>
+              <Text style={styles.searchText}>今天想吃点什么？</Text>
             </View>
           </TouchableOpacity>
         </LinearGradient>
@@ -115,64 +147,10 @@ export default class HomePage extends Component<Props> {
           </View>
           <View style={{flex: 1,flexDirection: 'column'}}>
             <View style={{flex: 0, flexDirection: 'row',height:100,marginTop:20,justifyContent: 'space-between',}}>
-              <View style={styles.contentInner}>
-                <View  style={styles.imgWrap}>
-                  <Image source={require('../img/jiachangcai.png')}
-                         style={styles.imgStyle}/>
-                </View>
-                <Text style={styles.contentText}>家常菜</Text>
-              </View>
-              <View style={styles.contentInner}>
-                <View  style={styles.imgWrap}>
-                  <Image source={require('../img/kuaishoucai.png')}
-                         style={styles.imgStyle}/>
-                </View>
-                <Text style={styles.contentText}>快手菜</Text>
-              </View>
-              <View style={styles.contentInner}>
-                <View  style={styles.imgWrap}>
-                  <Image source={require('../img/chuangyicai.png')}
-                         style={styles.imgStyle}/>
-                </View>
-                <Text style={styles.contentText}>创意菜</Text>
-              </View>
-              <View style={styles.contentInner}>
-                <View  style={styles.imgWrap}>
-                  <Image source={require('../img/sucai.png')}
-                         style={styles.imgStyle}/>
-                </View>
-                <Text style={styles.contentText}>素菜</Text>
-              </View>
+              {categor}
             </View>
             <View style={{flex: 0,height:100, flexDirection: 'row',marginTop:15,justifyContent: 'space-between',}}>
-              <View style={styles.contentInner}>
-                <View  style={styles.imgWrap}>
-                  <Image source={require('../img/liangcai.png')}
-                         style={styles.imgStyle}/>
-                </View>
-                <Text style={styles.contentText}>凉菜</Text>
-              </View>
-              <View style={styles.contentInner}>
-                <View  style={styles.imgWrap}>
-                  <Image source={require('../img/hongpei.png')}
-                         style={styles.imgStyle}/>
-                </View>
-                <Text style={styles.contentText}>烘焙</Text>
-              </View>
-              <View style={styles.contentInner}>
-                <View  style={styles.imgWrap}>
-                  <Image source={require('../img/mianshi.png')}
-                         style={styles.imgStyle}/>
-                </View>
-                <Text style={styles.contentText}>面食</Text>
-              </View>
-              <View style={styles.contentInner}>
-                <View  style={styles.imgWrap}>
-                  <Image source={require('../img/tang.png')}
-                         style={styles.imgStyle}/>
-                </View>
-                <Text style={styles.contentText}>汤</Text>
-              </View>
+              {categor2}
             </View>
           </View>
         </View>
@@ -287,3 +265,44 @@ const styles = StyleSheet.create({
     shadowOffset:{ width:3, height:3 }, shadowColor:'#bbb', shadowOpacity:0.8, shadowRadius:15
   }
 })
+
+const caiList =[
+  {
+    id:1,
+    name:'家常菜',
+    img:'../img/jiachangcai.png'
+  },
+  {
+    id:2,
+    name:'快手菜',
+    img:'../img/kuaishoucai.png'
+  },{
+    id:3,
+    name:'创意菜',
+    img:'../img/chuangyicai.png'
+  },{
+    id:4,
+    name:'素菜',
+    img:'../img/sucai.png'
+  }
+];
+
+const caiList2 =[
+  {
+    id:5,
+    name:'凉菜',
+    img:'../img/liangcai.png'
+  },{
+    id:6,
+    name:'烘焙',
+    img:'../img/hongpei.png'
+  },{
+    id:7,
+    name:'面食',
+    img:'../img/mianshi.png'
+  },{
+    id:8,
+    name:'汤',
+    img:'../img/tang.png'
+  }
+];

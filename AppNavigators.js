@@ -1,15 +1,11 @@
-import { createStackNavigator,createBottomTabNavigator,createMaterialTopTabNavigator } from 'react-navigation'; // https://reactnavigation.org/docs/zh-Hans/getting-started.html
+import { createStackNavigator } from 'react-navigation'; // https://reactnavigation.org/docs/zh-Hans/getting-started.html
 import React from 'react';
 // import Ionicons from 'react-native-vector-icons/Ionicons';
-import LinearGradient from 'react-native-linear-gradient'
-import {Button,Text} from 'react-native'
 import HomePage from './src/page/HomePage';
 import SearchPage from './src/page/SearchPage';
 import ListPage from './src/page/ListPage';
+import CtgListPage from './src/page/CtgListPage';
 import DetailPage from './src/page/DetailPage';
-import HeaderComponent from './src/components/HeaderComponent';
-import TitleComponent from './src/components/TitleComponent';
-import LeftComponent from './src/components/LeftComponent';
 
 export const AppStackNavigator = createStackNavigator({
   HomePage: {
@@ -29,20 +25,12 @@ export const AppStackNavigator = createStackNavigator({
     screen: ListPage,
     navigationOptions:{
       header: null,  //隐藏顶部导航栏
-      // title:'详情页',
-      // header:HeaderComponent,                       //自定义头部组件
-      //   // headerTitle:TitleComponent,                   //自定义标题组件
-      //   // headerLeft:LeftComponent,                     //自定义左边组件，会替换掉默认返回按钮
-      // headerRight:<Text>右边元素</Text>,            //自定义右边元素，注意这里不可以放组件
-      //   headerStyle:{                                 //导航栏样式设置
-      //     backgroundColor:'#8bc9ff',
-      //   },
-      //   headerTintColor:'#fff',                       //按钮、标题颜色设置
-      //   headerTitleStyle:{                            //标题字体样式设置
-      //     fontWeight:'bold',
-      //   },
-      // headerTransparent:true,                       //使头部背景透明，且不占位置
-        // gesturesEnabled:true,                         //开启手势操作
+    }
+  },
+  CtgListPage: {
+    screen: CtgListPage,
+    navigationOptions:{
+      header: null,  //隐藏顶部导航栏
     }
   },
   DetailPage: {
