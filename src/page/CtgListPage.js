@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View,ActivityIndicator} from 'react-native';
-import List from '../components/List';
+import ListCate from '../components/ListCate';
 import HeaderComponent from '../components/HeaderComponent';
 import api from '../service/base'
 import { juhe_key } from '../util/config'
 export default class ListPage extends Component {
   constructor(props) {
     super(props);
-    const {params} = this.props.navigation.state
+    const {params={}} = this.props.navigation.state
     this.state = {
       isLoading:false,
       resultData:{},
-      cid:params.cid,
+      cid:params.cid||2,
       key:juhe_key
     };
   }
@@ -23,7 +23,8 @@ export default class ListPage extends Component {
     this.setState({
       isLoading:true
     });
-    api.getCaiPuList({key,cid}).then((resp) => {
+    api.getCaiPuCataList({key,cid}).then((resp) => {
+      console.log(123,resp)
       if (resp) {
         this.setState({resultData: resp}) // 展示列表
       } else {
@@ -43,7 +44,7 @@ export default class ListPage extends Component {
             <ActivityIndicator/>
           </View>
         ):(
-          <List {...this.props} resultData={this.state.resultData}></List>
+          <ListCate {...this.props} resultData={this.state.resultData}></ListCate>
         )}
 
       </View>
