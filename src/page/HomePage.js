@@ -12,7 +12,6 @@ import { Card } from 'react-native-shadow-cards'
 import { juhe_key } from '../util/config'
 import api from '../service/base'
 import storage from '../util/storage'
-import SplashScreen from "rn-splash-screen";
 import CtgListPage from "./CtgListPage";  //https://blog.csdn.net/huxinguang_ios/article/details/79892440
 
 storage.sync = {
@@ -46,11 +45,6 @@ export default class HomePage extends Component<Props> {
   }
 
   componentDidMount () {
-    setTimeout(() => {
-      // SplashScreen.hide();
-    }, 3000);//延时2秒消失
-    // 放在componentDidMount方法中可以让app的界面先加载出来，避免出现白屏闪一下的问题。
-
     this.query()
   };
 
@@ -81,37 +75,42 @@ export default class HomePage extends Component<Props> {
   render () {
     const {navigation} = this.props
     const {caishi = {}} = this.state
-    const categor = caiList.map((v)=>(
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('CtgListPage',
-            {name: v.name,cid:v.id})
-        }}>
-        <View style={styles.contentInner}>
-          <View  style={styles.imgWrap}>
-            <Image source={require(v.img)}
-                   style={styles.imgStyle}/>
+    const categor = caiList.map((v)=>{
+      return (
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('CtgListPage',
+              {name: v.name,cid:v.id})
+          }} key={v.id}>
+          <View style={styles.contentInner}>
+            <View  style={styles.imgWrap}>
+              <Image source={v.img}
+                     style={styles.imgStyle}/>
+            </View>
+            <Text style={styles.contentText}>{v.name}</Text>
           </View>
-          <Text style={styles.contentText}>{v.name}</Text>
-        </View>
-      </TouchableOpacity>
-      ))
+        </TouchableOpacity>
+      )
+    })
 
-    const categor2 = caiList2.map((v)=>(
-      <TouchableOpacity
-                        onPress={() => {
-                          navigation.navigate('CtgListPage',
-                            {name: v.name,cid:v.id})
-                        }}>
-        <View style={styles.contentInner}>
-          <View  style={styles.imgWrap}>
-            <Image source={require(v.img)}
-                   style={styles.imgStyle}/>
+    const categor2 = caiList2.map((v)=>{
+      return (
+        <TouchableOpacity
+          key={v.id}
+          onPress={() => {
+            navigation.navigate('CtgListPage',
+              {name: v.name,cid:v.id})
+          }}>
+          <View style={styles.contentInner}>
+            <View  style={styles.imgWrap}>
+              <Image source={v.img}
+                     style={styles.imgStyle}/>
+            </View>
+            <Text style={styles.contentText}>{v.name}</Text>
           </View>
-          <Text style={styles.contentText}>{v.name}</Text>
-        </View>
-      </TouchableOpacity>
-      ))
+        </TouchableOpacity>
+      )
+    })
     return (
       <View style={styles.container}>
         <LinearGradient colors={['#FD6C1F', '#F98D23']} start={{x: 1, y: 0}}
@@ -270,20 +269,20 @@ const caiList =[
   {
     id:1,
     name:'家常菜',
-    img:'../img/jiachangcai.png'
+    img:require('../img/jiachangcai.png')
   },
   {
     id:2,
     name:'快手菜',
-    img:'../img/kuaishoucai.png'
+    img:require('../img/kuaishoucai.png')
   },{
     id:3,
     name:'创意菜',
-    img:'../img/chuangyicai.png'
+    img:require('../img/chuangyicai.png')
   },{
     id:4,
     name:'素菜',
-    img:'../img/sucai.png'
+    img:require('../img/sucai.png')
   }
 ];
 
@@ -291,18 +290,18 @@ const caiList2 =[
   {
     id:5,
     name:'凉菜',
-    img:'../img/liangcai.png'
+    img:require('../img/liangcai.png')
   },{
     id:6,
     name:'烘焙',
-    img:'../img/hongpei.png'
+    img:require('../img/hongpei.png')
   },{
     id:7,
     name:'面食',
-    img:'../img/mianshi.png'
+    img:require('../img/mianshi.png')
   },{
     id:8,
     name:'汤',
-    img:'../img/tang.png'
+    img:require('../img/tang.png')
   }
 ];
