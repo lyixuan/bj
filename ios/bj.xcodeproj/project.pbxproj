@@ -1662,7 +1662,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.liuyixuan.cookbook;
 				PRODUCT_NAME = bj;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1692,7 +1692,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.liuyixuan.cookbook;
 				PRODUCT_NAME = bj;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
