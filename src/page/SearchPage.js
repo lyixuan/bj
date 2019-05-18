@@ -51,7 +51,29 @@ export default class SearchPage extends Component<Props> {
     const {navigation} = this.props;
     const {text}=this.state
     if (!text) return
+    this.store();// 存储查询历史记录
     navigation.navigate('ListPage', {text} )
+  }
+  store=()=>{
+    const {text} = this.state;
+    storage.load({
+      key: 'History',
+    }).then(ret => {
+      // 如果找到数据，则在then方法中返回
+      ret.push(text)
+      const list =Array.from(new Set(ret));
+      storage.save({
+        key: 'History',
+        data: list,
+      })
+    }).catch(err => {
+      // 如果没有找到数据且没有sync方法，
+      // 或者有其他异常，则在catch中返回
+      storage.save({
+        key: 'History',
+        data: [text],
+      })
+    });
   }
   render() {
     const {navigation} = this.props;

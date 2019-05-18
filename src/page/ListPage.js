@@ -8,47 +8,47 @@ import { juhe_key } from '../util/config'
 export default class ListPage extends Component {
   constructor(props) {
     super(props);
-    const {params} = this.props.navigation.state
+    const {params={}} = this.props.navigation.state
     this.state = {
       isLoading:false,
       resultData:{},
-      text:params.text,
+      nextPn:0,
+      text:'土豆'||params.text,
       key:juhe_key
     };
   }
   componentDidMount() {
     this.quary();
   }
-  store=()=>{
-    const {text} = this.state;
-    storage.load({
-      key: 'History',
-    }).then(ret => {
-      // 如果找到数据，则在then方法中返回
-      ret.push(text)
-      const list =Array.from(new Set(ret));
-      storage.save({
-        key: 'History',
-        data: list,
-      })
-    }).catch(err => {
-      // 如果没有找到数据且没有sync方法，
-      // 或者有其他异常，则在catch中返回
-      storage.save({
-        key: 'History',
-        data: [text],
-      })
-    });
+  refresh=()=>{
+    console.log(12333)
+    this.setState({
+      nextPn:0,
+      resultData:{}
+    },()=>this.quary())
+    this.quary();
+  }
+  endReached=()=>{
+    const {data=[],totalNum} = this.props.resultData;
+    // 数据加载完判断
+    if(data && data.length < parseInt(totalNum)){
+      this.quary()
+    }else{
+      console.log('已加载完成')
+    }
   }
   quary=()=>{
-    const {key,text} = this.state;
+    const {key,text,nextPn} = this.state;
     this.setState({
       isLoading:true
     })
-    api.getCaiPuList({key,menu:text}).then((resp) => {
+    api.getCaiPuList({key,menu:text,pn:nextPn}).then((resp) => {
       if (resp) {
-        this.store();// 存储查询历史记录
-        this.setState({resultData: resp}) // 展示列表
+        resp.data = this.resultData.data.concat(resp.data);
+        this.setState({
+          resultData: resp,
+          nextPn:resp.pn+1
+        }) // 展示列表
       } else {
         this.setState({resultData: {}})
       }
@@ -56,7 +56,7 @@ export default class ListPage extends Component {
         isLoading:false
       })
     })
-  }
+  };
   onchange = (text)=>{
     this.setState({text})
   }
@@ -64,6 +64,7 @@ export default class ListPage extends Component {
     const {navigation} = this.props;
     this.quary()
   }
+
   render() {
     const {navigation} = this.props;
     return (
@@ -79,9 +80,8 @@ export default class ListPage extends Component {
             <ActivityIndicator/>
           </View>
         ):(
-          <List {...this.props} resultData={this.state.resultData}></List>
+          <List {...this.props} resultData={this.state.resultData} refresh={this.refresh} endReached={this.endReached}></List>
         )}
-
       </View>
     );
   }
