@@ -40,8 +40,8 @@ export const AppStackNavigator = createStackNavigator({
     })
   },
 },{//定义配置
-  // initialRouteName: 'HomePage',     //设置初始路由为Home
-  initialRouteName: 'ListPage',     //设置初始路由为Home
+  initialRouteName: 'HomePage',     //设置初始路由为Home
+  // initialRouteName: 'ListPage',     //设置初始路由为Home
   navigationOptions: {  // 屏s幕导航的默认选项, 也可以在组件内用 static navigationOptions 设置(会覆盖此处的设置)
     header: {  // 导航栏相关设置项
       backTitle: '返回',  // 左上角返回键文字

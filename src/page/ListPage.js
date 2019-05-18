@@ -13,7 +13,7 @@ export default class ListPage extends Component {
       isLoading:false,
       resultData:{},
       nextPn:0,
-      text:'土豆'||params.text,
+      text:params.text,
       key:juhe_key
     };
   }
@@ -52,6 +52,7 @@ export default class ListPage extends Component {
       } else {
         this.setState({resultData: {}})
       }
+      console.log('resp',resp)
       this.setState({
         isLoading:false
       })

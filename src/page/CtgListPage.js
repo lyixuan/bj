@@ -11,7 +11,7 @@ export default class ListPage extends Component {
     this.state = {
       isLoading:false,
       resultData:{},
-      cid:params.cid||2,
+      cid:params.cid,
       key:juhe_key
     };
   }
