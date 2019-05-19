@@ -36,23 +36,20 @@ export default class ListItem extends Component<Props> {
     });
     const newingredients = arr.join(',');
     return (
-      <View>
-        <TouchableOpacity onPress={e => this.jump(e)}>
-          <View style={{flex: 1, flexDirection: 'row', height: 100,marginTop:15}}>
+        <TouchableOpacity style={{flex:1,marginLeft:15,marginTop:10}} onPress={e => this.jump(e)}>
+          <View style={{width: '100%'}}>
             <View style={styles.left}>
               <Image imageStyle={{borderRadius:10}} source={{uri: albums && albums[0]}}
-                     style={{width: '90%', height: '100%',borderRadius:10}}/>
+                     style={{height:'100%', borderRadius:10}}/>
             </View>
             <View style={styles.right}>
-              <View style={{height: '100%'}}>
+              <View style={{marginTop:5}}>
                 <Text style={styles.title}>{title}</Text>
-                <Text style={styles.ingredients} numberOfLines={1}>{newingredients}</Text>
-                <Text style={styles.count}>{a}万浏览 {b}万收藏</Text>
+                <Text style={styles.ingredients}>{a}万浏览 {b}万收藏</Text>
               </View>
             </View>
           </View>
         </TouchableOpacity>
-      </View>
     )
   }
 }
@@ -60,12 +57,12 @@ export default class ListItem extends Component<Props> {
 const styles = StyleSheet.create({
   left: {
     flex: 1,
-    height: '100%'
+    height: 140
 
   },
   right:{
-    flex: 1.2,
-    height: '100%',
+    flex: 1,
+    height: 60
   },
   title: {
     fontSize:16,

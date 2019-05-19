@@ -20,6 +20,7 @@ export default  class HeaderComponent extends Component {
     this.props.onTextChange(text);
   }
   inputSubmit=(e)=>{
+    this.refs.textInput1.blur();
     this.props.onSubmit();
   }
   render () {
@@ -36,6 +37,7 @@ export default  class HeaderComponent extends Component {
         </TouchableOpacity>
         <ImageBackground source={require('../img/search2.png')} style={styles.searchIcon}/>
         <TextInput
+          ref="textInput1"
                    defaultValue={text}
                    clearButtonMode="while-editing"
                    onChangeText={(text)=>this.inputChange(text)}

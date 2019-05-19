@@ -8,7 +8,7 @@ import {
   Dimensions,
   Image
 } from 'react-native'
-import ListItem from './ListItem'
+import CateListItem from './CateListItem'
 
 export default class List extends Component {
   constructor (props) {
@@ -36,7 +36,7 @@ export default class List extends Component {
     return (
       <View style={styles.footerView}>
         {isShowMore == 1 && <ActivityIndicator/>}
-        <Text style={{color: '#ccc',textAlign:'center',marginTop:8}}>
+        <Text style={{color: '#ccc',textAlign:'center',marginTop:3}}>
           {isShowMore ==1  ? '加载更多数据...':isShowMore ==2?'没有更多数据了':''}
         </Text>
       </View>
@@ -53,11 +53,14 @@ export default class List extends Component {
           data={data}   // 列表的数据源, 数组
           showsVerticalScrollIndicator={false}  // //隐藏垂直滚动条
           renderItem={({item}) => (
-            <ListItem {...this.props} item={item}/>)} //渲染列表数据
+            <CateListItem {...this.props} item={item}/>)} //渲染列表数据
           onEndReachedThreshold={0.2} //当距离内容比例不足内容0.1比例时触发onEndReached
           onEndReached={this._endReached} //上拉加载数据
           ListFooterComponent={this._createListFooter}
           ListEmptyComponent={this.listEmptyComponent}
+          numColumns={2}
+          // columnWrapperStyle = {{borderWidth: 2}}
+          horizontal={false}
         />
       </View>
     )
@@ -68,7 +71,6 @@ const styles = StyleSheet.create({
   container: {
     height:Dimensions.get("window").height-100,
     paddingRight: 15,
-    paddingLeft: 15,
   },
   footerView:{
     height:50,

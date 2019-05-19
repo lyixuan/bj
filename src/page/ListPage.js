@@ -11,25 +11,23 @@ export default class ListPage extends Component {
     const {params={}} = this.props.navigation.state
     this.state = {
       isLoading:false,
+      isShowMore:0,
       resultData:{},
       nextPn:0,
-      text:params.text||'土豆',
+      text:params.text,
       key:juhe_key
     };
   }
   componentDidMount() {
-    this.quary();
-  }
-  refresh=()=>{
-    console.log(12333)
     this.setState({
-      nextPn:0,
-      resultData:{}
-    },()=>this.quary())
-    this.quary();
+      isLoading:true
+    },()=>this.quary('0'))
   }
   endReached=()=>{
-    const {data=[],totalNum} = this.props.resultData;
+    this.setState({
+      isShowMore:1
+    })
+    const {data=[],totalNum=0} = this.state.resultData;
     // 数据加载完判断
     if(data && data.length < parseInt(totalNum)){
       this.quary()
@@ -37,38 +35,71 @@ export default class ListPage extends Component {
       console.log('已加载完成')
     }
   }
-  quary=()=>{
+  quary=(pn)=>{
     const {key,text,nextPn} = this.state;
-    this.setState({
-      isLoading:true
-    })
-    api.getCaiPuList({key,menu:text,pn:nextPn}).then((resp) => {
+    api.getCaiPuList({key,menu:text,pn:pn?Number(pn):nextPn}).then((resp) => {
+      this.state.isLoading = false;
       if (resp) {
         const {data=[]} = this.state.resultData;
-        resp.data = data.concat(resp.data);
+        const {totalNum=0} = resp;
+        const rt = {
+          data:data.concat(resp.data),
+          totalNum:resp.totalNum,
+          pn:resp.pn,
+        }
         this.setState({
-          resultData: resp,
+          resultData: rt,
           nextPn:Number(resp.pn)+1
         }) // 展示列表
+
+        if (rt.data.length>=Number(totalNum)) {
+          this.setState({
+            isShowMore:2
+          })
+        } else {
+          this.setState({
+            isShowMore:0
+          })
+        }
+        this.store();// 存储查询历史记录
       } else {
         this.setState({resultData: {}})
       }
-      console.log('resp',resp)
-      this.setState({
-        isLoading:false
-      })
     })
   };
+  store=()=>{
+    const {text} = this.state;
+    storage.load({
+      key: 'History',
+    }).then(ret => {
+      // 如果找到数据，则在then方法中返回
+      ret.unshift(text)
+      const list =Array.from(new Set(ret));
+      storage.save({
+        key: 'History',
+        data: list,
+      })
+    }).catch(err => {
+      // 如果没有找到数据且没有sync方法，
+      // 或者有其他异常，则在catch中返回
+      storage.save({
+        key: 'History',
+        data: [text],
+      })
+    });
+  }
   onchange = (text)=>{
     this.setState({text})
   }
   onSubmit = ()=>{
     const {navigation} = this.props;
-    this.quary()
+    this.setState({
+      isLoading:true
+    },()=>this.quary('0'))
   }
-
   render() {
     const {navigation} = this.props;
+    console.log(this.state.isLoading)
     return (
       <View style={styles.container}>
         <HeaderComponent
@@ -78,11 +109,9 @@ export default class ListPage extends Component {
           onSubmit={this.onSubmit}
         />
         {this.state.isLoading?(
-          <View style={styles.container1}>
-            <ActivityIndicator/>
-          </View>
+          <ActivityIndicator style={styles.container1}/>
         ):(
-          <List {...this.props} resultData={this.state.resultData} refresh={this.refresh} endReached={this.endReached}></List>
+          <List {...this.props} resultData={this.state.resultData} isShowMore={this.state.isShowMore} endReached={this.endReached}></List>
         )}
       </View>
     );
