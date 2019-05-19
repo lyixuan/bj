@@ -38,14 +38,6 @@ export default class List extends Component {
   }
   _endReached=()=>{
     this.props.endReached();
-    let that=this
-    const {data=[],totalNum} = this.props.resultData;
-    // 数据加载完判断
-    if(data && data.length < parseInt(totalNum)){
-      that.state.currentPage++;
-    }else{
-      console.log('已加载完成')
-    }
   }
   render(){
     const {resultData} = this.props;
@@ -63,10 +55,10 @@ export default class List extends Component {
             // showsVerticalScrollIndicator = {false} //继承ScrollView的属性，显示水平指示器默认是true
             // horizontal = {false} //默认true是垂直布局
             // numColumns = {3}  // 水平布局的item数量
-            refreshing = {true}
-            onRefresh = {this._onRefresh} //下拉刷新
+          // refreshing = {true}
+            // onRefresh = {this._onRefresh} //下拉刷新
             // onEndReachedThreshold = {0.1} //当距离内容比例不足内容0.1比例时触发onEndReached
-            onEndReached = {this._endReached} //上拉加载数据
+          // onEndReached = {this._endReached} //上拉加载数据
             />
       </View>
     );
@@ -75,6 +67,7 @@ export default class List extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex:1,
     padding:15
   },
 });

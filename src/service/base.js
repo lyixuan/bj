@@ -16,6 +16,7 @@ export default {
   },
   getCaiPuList(params) {
     // 菜谱关键词搜索列表
+    params.rn = '10'
     return api.get(query, {params}).then((resp) => {
       if (resp.resultcode !== '200') {
         return null;
@@ -25,6 +26,7 @@ export default {
   },
   getCaiPuCataList(params) {
     // 菜谱分类搜索列表
+    params.rn = '10'
     return api.get(indexQuery, {params}).then((resp) => {
       if (resp.resultcode !== '200') {
         return null;

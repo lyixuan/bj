@@ -13,7 +13,7 @@ export default class ListPage extends Component {
       isLoading:false,
       resultData:{},
       nextPn:0,
-      text:params.text,
+      text:params.text||'土豆',
       key:juhe_key
     };
   }
@@ -44,10 +44,11 @@ export default class ListPage extends Component {
     })
     api.getCaiPuList({key,menu:text,pn:nextPn}).then((resp) => {
       if (resp) {
-        resp.data = this.resultData.data.concat(resp.data);
+        const {data=[]} = this.state.resultData;
+        resp.data = data.concat(resp.data);
         this.setState({
           resultData: resp,
-          nextPn:resp.pn+1
+          nextPn:Number(resp.pn)+1
         }) // 展示列表
       } else {
         this.setState({resultData: {}})

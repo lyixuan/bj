@@ -26,16 +26,16 @@ export default  class HeaderComponent extends Component {
     const {navigation,text} = this.props
     return (
       <LinearGradient style={styles.container} colors={['#FD6C1F', '#F98D23']}
-                      start={{x: 1, y: 0}}
-                      end={{x: 0, y: 1}}>
+                      start={{x: 0, y: 1}}
+                      end={{x: 1, y: 0}}>
         <TouchableOpacity onPress={() => {
           navigation.navigate('HomePage')
         }}>
           <Image source={require('../img/back.png')}
-                 style={{width: 24, height: 24,marginTop:7}}/>
+                 style={{width: 22, height: 22,marginTop:9}}/>
         </TouchableOpacity>
         <ImageBackground source={require('../img/search2.png')} style={styles.searchIcon}/>
-        <TextInput autoFocus={false}
+        <TextInput
                    defaultValue={text}
                    clearButtonMode="while-editing"
                    onChangeText={(text)=>this.inputChange(text)}
@@ -55,16 +55,16 @@ export default  class HeaderComponent extends Component {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    paddingTop: 40,
-    height: 80,
+    paddingTop: 50,
+    height: 90,
     paddingLeft: 10,
     paddingRight: 5,
     paddingBottom: 10,
   },
   searchIcon:{
     position: 'absolute',
-    top: 53,
-    left: 55,
+    top: 63,
+    left: 53,
     width:16,
     height:16,
     zIndex:1000
@@ -74,17 +74,17 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     color: '#333',
     backgroundColor: 'white',
-    height: 28,
+    height: 30,
     paddingLeft: 32,
-    paddingTop: 4,
-    marginRight: 12,
+    paddingTop: 3,
+    marginRight: 10,
     marginLeft: 10,
-    marginTop: 6,
+    marginTop: 5,
     fontSize: 14,
     textDecorationLine: 'none',
   },
   rightIcons: {
-    marginTop: 5,
+    marginTop: 6,
     paddingTop: 5,
     marginRight: 10,
   },

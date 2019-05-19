@@ -20,7 +20,7 @@ export default class SearchPage extends Component<Props> {
       key: 'History',
     }).then(ret => {
       this.setState({
-        historyStoreList:ret
+        historyStoreList:Array.isArray(ret)?ret:[]
       })
     }).catch(err => {
       // 如果没有找到数据且没有sync方法，
