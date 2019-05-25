@@ -35,9 +35,9 @@ export const AppStackNavigator = createStackNavigator({
   },
   DetailPage: {
     screen: DetailPage,
-    navigationOptions: ({ navigation }) => ({ // 动态配置title
-      title: `${navigation.state.params.name}页面名`
-    })
+    navigationOptions:{
+      header: null,  //隐藏顶部导航栏
+    }
   },
 },{//定义配置
   initialRouteName: 'HomePage',     //设置初始路由为Home

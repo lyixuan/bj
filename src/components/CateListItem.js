@@ -20,10 +20,9 @@ export default class ListItem extends Component<Props> {
     this.state = {}
   }
 
-  jump = () => {
-    this.props.navigation.navigate('DetailPage', {name: 'abcdefc'})
+  jump = (e,item) => {
+    this.props.navigation.navigate('DetailPage', {details: item})
   }
-
   render () {
     const {item = {}} = this.props
     const {id = '', title = '', albums = [], burden = '', imtro = '', ingredients = '', tags = '', steps = []} = item
@@ -36,7 +35,7 @@ export default class ListItem extends Component<Props> {
     });
     const newingredients = arr.join(',');
     return (
-        <TouchableOpacity style={{flex:1,marginLeft:15,marginTop:10}} onPress={e => this.jump(e)}>
+        <TouchableOpacity style={{flex:1,marginLeft:15,marginTop:10}} onPress={e => this.jump(e,item)}>
           <View style={{width: '100%'}}>
             <View style={styles.left}>
               <Image imageStyle={{borderRadius:10}} source={{uri: albums && albums[0]}}
