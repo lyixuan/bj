@@ -30,7 +30,7 @@ export default  class HeaderComponent extends Component {
                       start={{x: 0, y: 1}}
                       end={{x: 1, y: 0}}>
         <TouchableOpacity onPress={() => {
-          navigation.navigate('HomePage')
+          navigation.navigate('HomePage',{random:Math.random()*10})
         }}>
           <Image source={require('../img/back.png')}
                  style={{width: 22, height: 22,marginTop:9}}/>

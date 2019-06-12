@@ -78,7 +78,7 @@ export default class ListPage extends Component {
         {this.state.isLoading?(
           <ActivityIndicator style={styles.container1}/>
         ):(
-          <CateList {...this.props} resultData={this.state.resultData} isShowMore={this.state.isShowMore} endReached={this.endReached}></CateList>
+          <CateList {...this.props} resultData={this.state.resultData} isShowMore={this.state.isShowMore} endReached={this.endReached}/>
         )}
       </View>
     );

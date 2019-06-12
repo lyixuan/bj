@@ -13,15 +13,21 @@ import {
 import LinearGradient from 'react-native-linear-gradient'
 export default  class HeaderComponent3 extends Component {
   render () {
-    const {navigation,title} = this.props
+    const {navigation,title,isHome} = this.props
     return (
       <LinearGradient style={styles.container} colors={['#FD6C1F', '#F98D23']}
                       start={{x: 0, y: 1}}
                       end={{x: 1, y: 0}}>
+        {isHome?<TouchableOpacity style={{width:40,height:40}} onPress={() => {
+            navigation.navigate('HomePage',{random:Math.random()*10})
+          }}>
+          <Image source={require('../img/back.png')}
+                 style={{width: 22, height: 22,marginTop:9}}/>
+        </TouchableOpacity>:
         <TouchableOpacity style={{width:40,height:40}} onPress={()=>navigation.goBack()}>
           <Image source={require('../img/back.png')}
                  style={{width: 22, height: 22,marginTop:9}}/>
-        </TouchableOpacity>
+        </TouchableOpacity>}
         <Text style={styles.searchTextInput}>{title}</Text>
       </LinearGradient>
     )

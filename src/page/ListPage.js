@@ -99,7 +99,6 @@ export default class ListPage extends Component {
   }
   render() {
     const {navigation} = this.props;
-    console.log(this.state.isLoading)
     return (
       <View style={styles.container}>
         <HeaderComponent

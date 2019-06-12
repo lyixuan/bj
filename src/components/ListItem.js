@@ -21,7 +21,7 @@ export default class ListItem extends Component<Props> {
   }
 
   jump = (e,item) => {
-    this.props.navigation.navigate('DetailPage', {details: item})
+    this.props.navigation.navigate('DetailPage', {details: item,isHome:this.props.isHome})
   }
 
   render () {

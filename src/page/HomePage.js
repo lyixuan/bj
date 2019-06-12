@@ -6,6 +6,8 @@ import {
   View,
   Image,
   TouchableOpacity,
+  FlatList,
+  ScrollView
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import { Card } from 'react-native-shadow-cards'
@@ -13,6 +15,7 @@ import { juhe_key } from '../util/config'
 import api from '../service/base'
 import storage from '../util/storage'
 import CtgListPage from "./CtgListPage";  //https://blog.csdn.net/huxinguang_ios/article/details/79892440
+import ListItem from '../components/ListItem'
 
 storage.sync = {
   // sync方法的名字必须和所存数据的key完全相同
@@ -41,12 +44,28 @@ export default class HomePage extends Component<Props> {
       params: {
         key: juhe_key,
       },
+      favoriteList:null
     }
   }
 
   componentDidMount () {
     this.query()
+    this.favoriteLoad()
   };
+  componentWillReceiveProps(nextProps){
+    const {params:params1={}} = this.props.navigation.state
+    const {params:params2={}} = nextProps.navigation.state
+    if (params1!==params2||params1.random!==params2.random) {
+      this.favoriteLoad()
+    }
+  }
+
+
+  clear = ()=>{
+    storage.remove({
+      key: 'favorite',
+    });
+  }
 
   query = () => {
     const {params = {}} = this.state
@@ -71,10 +90,30 @@ export default class HomePage extends Component<Props> {
       this.setState({dataSource: ret, caishi, isLoading: false})
     })
   }
-
+  favoriteLoad=()=>{
+    storage.load({
+      key: 'favorite',
+    }).then(ret => {
+      this.setState({
+        favoriteList:ret||null
+      })
+      console.log(343434,ret)
+    }).catch(err => {
+      // 如果没有找到数据且没有sync方法，
+      // 或者有其他异常，则在catch中返回
+      this.setState({
+        favoriteList:{}
+      })
+    });
+  }
   render () {
     const {navigation} = this.props
-    const {caishi = {}} = this.state
+    const {caishi = {},favoriteList} = this.state;
+    const data = [];
+    for (let key in favoriteList) {
+      data.push(favoriteList[key])
+    }
+    const list = data.map((item)=>(<ListItem {...this.props} isHome={true} item={item}/>))
     const categor = caiList.map((v)=>{
       return (
         <TouchableOpacity
@@ -111,6 +150,8 @@ export default class HomePage extends Component<Props> {
         </TouchableOpacity>
       )
     })
+
+
     return (
       <View style={styles.container}>
         <LinearGradient colors={['#FD6C1F', '#F98D23']} start={{x: 1, y: 0}}
@@ -134,6 +175,7 @@ export default class HomePage extends Component<Props> {
             </View>
           </TouchableOpacity>
         </LinearGradient>
+        <ScrollView>
         <View style={styles.content}>
           <View style={styles.contentTop}>
             <View style={styles.contentLine}/>
@@ -141,10 +183,10 @@ export default class HomePage extends Component<Props> {
               fontSize: 20,
               color:'#333',
               fontWeight: ('bold', '600'),
-            }}>{caishi.name}</Text>
+            }}>菜式菜品</Text>
             </View>
           </View>
-          <View style={{flex: 1,flexDirection: 'column'}}>
+          <View style={{flexDirection: 'column'}}>
             <View style={{flex: 0, flexDirection: 'row',height:100,marginTop:20,justifyContent: 'space-between',}}>
               {categor}
             </View>
@@ -152,19 +194,37 @@ export default class HomePage extends Component<Props> {
               {categor2}
             </View>
           </View>
+          <View style={styles.contentTop2}>
+            <View style={styles.contentLine}/>
+            <View style={styles.contentCat}><Text style={{
+              fontSize: 20,
+              color:'#333',
+              fontWeight: ('bold', '600'),
+            }}>我的收藏</Text>
+            </View>
+          </View>
+          <View style={{flexDirection: 'column'}}>
+              {data.length>0?list:<View style={{height: '100%',width:'100%', alignItems: 'center'}}>
+                <Text style={{color:'#bfbfbf',marginTop:25,fontSize:18}}>您还没有收藏菜谱哦!</Text>
+                <Text style={{color:'#bfbfbf',marginTop:5,fontSize:18}}>赶快去看看吧~</Text>
+              </View>}
+          </View>
         </View>
+        </ScrollView>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+  },
   header: {
     overflow: 'visible',
     height: 160,
     padding: 15,
-    marginBottom: 50,
+    marginBottom: 30,
   },
   title: {
     marginTop: 40,
@@ -217,12 +277,17 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 15,
-    flex: 1,
+    flexDirection: 'column',
     width: '100%',
   },
   contentTop: {
     flexDirection: 'row',
     height: 25,
+  },
+  contentTop2:{
+    flexDirection: 'row',
+    height: 25,
+    marginTop:20
   },
   contentLine: {
     width: 4,
@@ -263,7 +328,7 @@ const styles = StyleSheet.create({
   imgWrap:{
     shadowOffset:{ width:3, height:3 }, shadowColor:'#bbb', shadowOpacity:0.8, shadowRadius:15
   }
-})
+});
 
 const caiList =[
   {
