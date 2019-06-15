@@ -125,12 +125,12 @@ export default class DetailPage extends Component {
         <TouchableOpacity style={styles.searchBox1} activeOpacity={1}
                           onPress={() => this.store(details)}>
           <View style={{flexDirection: 'row',justifyContent: 'center',
-            alignItems: 'center',height:50}}>
+            alignItems: 'center',height:40}}>
             {!isShouCang?<Image source={require('../img/shoucang.png')}
-                   style={{width: 30, height: 30,marginTop:2}}/>:<Image source={require('../img/shoucang2.png')}
-                                                                        style={{width: 30, height: 30,marginTop:2}}/>}
+                   style={{width: 24, height: 24,marginTop:2}}/>:<Image source={require('../img/shoucang2.png')}
+                                                                        style={{width: 24, height: 24,marginTop:2}}/>}
 
-            <Text style={{fontSize:20,marginLeft:5,marginTop:2}}>收藏</Text>
+            <Text style={{fontSize:16,marginLeft:5,marginTop:2}}>收藏</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -221,12 +221,12 @@ const styles = StyleSheet.create({
   },
   searchBox1: {
     position: 'absolute',
-    bottom: 60,
+    bottom: 50,
     right: 20,
-    width: 120,
-    height: 50,
+    width: 100,
+    height: 40,
     opacity: 0.95,
-    borderRadius:25,
+    borderRadius:20,
     color: '#c8c8c8',
   },
 });
